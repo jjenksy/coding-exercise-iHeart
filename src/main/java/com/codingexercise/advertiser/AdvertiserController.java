@@ -10,38 +10,83 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by jenksy on 7/7/17.
+ * Rest controller for the advertiser model that exposes endpoints to the client
  */
 @RestController
 @RequestMapping(value = "/api/advertiser")
 public class AdvertiserController{
 
-    @Autowired
     private CreditChecker creditChecker;
-    @Autowired
     private AdvertiserMapper advertiserMapper;
 
+    /**
+     * Constructor for the advertiser to autowire the dependencies
+     */
+    @Autowired
+    public AdvertiserController(CreditChecker creditChecker, AdvertiserMapper advertiserMapper) {
+        this.creditChecker = creditChecker;
+        this.advertiserMapper = advertiserMapper;
+    }
 
+    /**
+     * @addAd is used to post new advertiser data to the database
+     * @param advertiserModel the json model of the advertiser
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/newAdvertiser")
     public void addAd(@RequestBody AdvertiserModel advertiserModel){
        advertiserMapper.insertAdvertiser(advertiserModel);
     }
 
+    /**
+     * @getAd get the advertiser for datastore by id if advertiser not found returns null with
+     * a httpstatus code of not found
+     * @param id the id of the advertiser to retrieve
+     * @return the entity or null
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/getAdvertiser/{id}")
     public HttpEntity<AdvertiserModel> getAd(@PathVariable("id")  Integer id){
-        System.out.println(id);
         return new ResponseEntity<AdvertiserModel>(advertiserMapper.findByID(id), HttpStatus.OK);
     }
 
-
+    /**
+     * Finds all the advertisers in the database
+     * @return the List of advertisers
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/findAll")
     public HttpEntity<Iterable<AdvertiserModel>> getAds(){
         return new ResponseEntity<Iterable<AdvertiserModel>>(advertiserMapper.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/checkScore/{id}/{amount}")
+    /**
+     * @getCredit gets the advertiser from the database and checks to see of the amount is less then there credit limit
+     * @param id the id of the advertiser to get
+     * @param credit the requested credit to check against
+     * @return true if amount is below limit and false otherwise
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/checkScore/{id}/{amount}")
     public HttpEntity<Boolean> getCredit(@PathVariable("id") Integer id, @PathVariable("amount") int credit){
         //check wheter the supplied amount is less then credit limit
         return new ResponseEntity<>(creditChecker.creditChecker(advertiserMapper.findByID(id).getCreditLimit(), credit), HttpStatus.OK);
+    }
+
+    /**
+     * @deleteAdvertiser is endpoint exposed to delete and advertiser be there id
+     * @param id the id of the advertiser to delete
+     */
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteAdvertiser/{id}")
+    public void deleteAdvertiser(@PathVariable("id") Integer id){
+        advertiserMapper.delete(id);
+    }
+
+    /**
+     * @updateAdvertiser is for updating an existing advertiser
+     * if not a values are sent in the model it defaults back to the original values
+     * @param advertiserModel the model to update
+     */
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateAdvertiser")
+    public void updateAdvertiser(@RequestBody AdvertiserModel advertiserModel){
+        //todo validate advertiser if the updates are null then default back to the original values
+       advertiserMapper.update(advertiserModel);
     }
 
 }
