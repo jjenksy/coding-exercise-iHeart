@@ -1,9 +1,11 @@
-package com.condingexcercise;
+package com.codingexercise;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.codingexercise.mapper")
 public class DemoApplication {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.condingexcercise.advertiser;
+package com.codingexercise.advertiser;
 
 import org.springframework.stereotype.Service;
 
