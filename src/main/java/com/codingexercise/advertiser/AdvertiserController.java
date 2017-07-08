@@ -2,11 +2,12 @@ package com.codingexercise.advertiser;
 
 import com.codingexercise.mapper.AdvertiserMapper;
 import com.codingexercise.model.AdvertiserModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by jenksy on 7/7/17.
@@ -21,8 +22,8 @@ public class AdvertiserController{
 
     /**
      * Constructor for the advertiser to autowire the dependencies
+     * since spring 4.3 you no longer need to autowire the controller
      */
-    @Autowired
     public AdvertiserController(CreditChecker creditChecker, AdvertiserMapper advertiserMapper) {
         this.creditChecker = creditChecker;
         this.advertiserMapper = advertiserMapper;
@@ -53,8 +54,8 @@ public class AdvertiserController{
      * @return the List of advertisers
      */
     @RequestMapping(method = RequestMethod.GET, value = "/findAll")
-    public HttpEntity<Iterable<AdvertiserModel>> getAds(){
-        return new ResponseEntity<Iterable<AdvertiserModel>>(advertiserMapper.findAll(), HttpStatus.OK);
+    public HttpEntity<List<AdvertiserModel>> getAds(){
+        return new ResponseEntity<>(advertiserMapper.findAll(), HttpStatus.OK);
     }
 
     /**

@@ -61,14 +61,4 @@ public class AdvertiserModel implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("AdvertiserModel{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", contactName='").append(contactName).append('\'');
-        sb.append(", creditLimit=").append(creditLimit);
-        sb.append('}');
-        return sb.toString();
-    }
 }
