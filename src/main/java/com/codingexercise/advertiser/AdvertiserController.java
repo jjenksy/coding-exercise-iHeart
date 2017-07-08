@@ -13,21 +13,17 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/api/advertiser")
-public class AdvertiserController {
-
-    private CreditChecker creditChecker;
-    private AdvertiserMapper advertiserMapper;
+public class AdvertiserController{
 
     @Autowired
-    public AdvertiserController(CreditChecker creditChecker, AdvertiserMapper advertiserMapper) {
-        this.creditChecker = creditChecker;
-        this.advertiserMapper = advertiserMapper;
-    }
+    private CreditChecker creditChecker;
+    @Autowired
+    private AdvertiserMapper advertiserMapper;
+
 
     @RequestMapping(method = RequestMethod.POST, value = "/newAdvertiser")
-    public HttpEntity<AdvertiserModel> addAd(@RequestBody AdvertiserModel advertiserModel){
-
-        return new ResponseEntity<AdvertiserModel>(advertiserMapper.insertAdvertiser(advertiserModel), HttpStatus.OK);
+    public void addAd(@RequestBody AdvertiserModel advertiserModel){
+       advertiserMapper.insertAdvertiser(advertiserModel);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getAdvertiser/{id}")

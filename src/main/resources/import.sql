@@ -7,4 +7,4 @@ drop table if exists advertiser;
 
 create table advertiser (id int primary key auto_increment, name varchar, contactName varchar,  creditLimit int);
 
-insert into advertiser (name, address, creditLimit) values ('John', 'Foo bar', 800);
+insert into advertiser (name, contactName, creditLimit) values ('John', 'Foo bar', 800);

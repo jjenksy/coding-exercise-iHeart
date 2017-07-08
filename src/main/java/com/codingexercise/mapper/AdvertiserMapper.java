@@ -23,10 +23,10 @@ public interface AdvertiserMapper {
     List<AdvertiserModel> findAll();
 
 
-    @Insert("insert into advertiser(name,address,creditLimit) values(#{name},#{address},#{creditLimit})")
+    @Insert("insert into advertiser(name,contactName,creditLimit) values(#{name},#{contactName},#{creditLimit})")
     @SelectKey(statement="call identity()", keyProperty="id",
             before=false, resultType=Integer.class)
-    AdvertiserModel insertAdvertiser(AdvertiserModel advertiserModel);
+    void insertAdvertiser(AdvertiserModel advertiserModel);
 
 
 }
