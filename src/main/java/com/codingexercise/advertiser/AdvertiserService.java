@@ -71,4 +71,64 @@ public class AdvertiserService {
         }
         return new ResponseEntity<AdvertiserModel>(advertiserModel, HttpStatus.OK);
     }
+
+    /**
+     * Delete advertiser but check if it exists before doing so
+     * @param id the id of the advertiser to check
+     * @return
+     */
+    public HttpEntity<Message> deleteAdvertiserIfExists(Integer id) {
+
+        AdvertiserModel advertiserModel = advertiserMapper.findByID(id);
+        if(advertiserModel == null){
+            return new ResponseEntity<Message>(new Message("The advertiser with id of "+ id+ " does not exist."), HttpStatus.NOT_FOUND);
+        }
+        advertiserMapper.delete(id);
+        return new ResponseEntity<Message>(new Message("The advertiser with id of "+ id+ " has been successfully deleted."), HttpStatus.OK);
+
+    }
+
+    /**
+     * @putAdvertiserIfExists is the error checking method to insure we have a proper
+     * advertiser before we save it to the database
+     * @param advertiserModel the new model passed to the use
+     * @return the saved model
+     */
+    public HttpEntity<AdvertiserModel> putAdvertiserIfExists(AdvertiserModel advertiserModel) {
+        AdvertiserModel oldAdvertiser = advertiserMapper.findByID(advertiserModel.getId());
+        if(oldAdvertiser== null){
+            return new ResponseEntity<AdvertiserModel>(new AdvertiserModel("Advertiser with id of "+ advertiserModel.getId()+ " does not exist."),HttpStatus.NOT_FOUND);
+        }
+        //if all data is not passed only update the data that is passed
+        if(!checkModel(advertiserModel)){
+            AdvertiserModel finalAdvertiser = updateChangedData(advertiserModel,oldAdvertiser);
+            advertiserMapper.update(finalAdvertiser);
+            return new ResponseEntity<>(finalAdvertiser, HttpStatus.OK);
+        }
+
+        advertiserMapper.update(advertiserModel);
+        return new ResponseEntity<>(advertiserModel, HttpStatus.OK);
+    }
+
+    /**
+     * @updateChangedData allows the user to send partially filled json data to the endpoint
+     * and fills any missing data with the old info
+     * @param advertiserModel the new adveritiser
+     * @param oldAdvertiser the old advertiser info to update
+     * @return the final advertiser to save
+     */
+    private AdvertiserModel updateChangedData(AdvertiserModel advertiserModel, AdvertiserModel oldAdvertiser) {
+
+        if(advertiserModel.getName() == null){
+            advertiserModel.setName(oldAdvertiser.getName());
+        }
+        if (advertiserModel.getContactName() == null){
+            advertiserModel.setContactName(oldAdvertiser.getContactName());
+        }
+        if(advertiserModel.getCreditLimit() == null){
+            advertiserModel.setCreditLimit(oldAdvertiser.getCreditLimit());
+        }
+
+        return advertiserModel;
+    }
 }

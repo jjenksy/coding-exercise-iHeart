@@ -1,10 +1,6 @@
 
-
-
-
-
 # coding-exercise-iHeart
-Spring Boot web app for conding-excercise
+Spring Boot web app for coding-exercise
 
 ## Getting Started
 
@@ -43,7 +39,13 @@ A jacoco test coverage report by running the command:
 ```
 gradle jacocoTestReport
 ```
-
+## Testing the API endpoints
+The endpoints are easily viewed and tested using [Swagger-UI](https://maven.apache.org/) to run the UI use the command
+```
+gradle bootRun
+```
+and navigate to http://localhost:8080/swagger-ui.html each of the endpoints are exposed through the UI and data can be 
+passed to the controller here.
 
 ## Deployment
 

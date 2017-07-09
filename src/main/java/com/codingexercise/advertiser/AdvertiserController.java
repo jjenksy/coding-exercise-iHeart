@@ -77,8 +77,8 @@ public class AdvertiserController{
      * @param id the id of the advertiser to delete
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteAdvertiser/{id}")
-    public void deleteAdvertiser(@PathVariable("id") Integer id){
-        advertiserMapper.delete(id);
+    public HttpEntity<Message> deleteAdvertiser(@PathVariable("id") Integer id){
+        return advertiserService.deleteAdvertiserIfExists(id);
     }
 
     /**
@@ -87,9 +87,8 @@ public class AdvertiserController{
      * @param advertiserModel the model to update
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/updateAdvertiser")
-    public void updateAdvertiser(@RequestBody AdvertiserModel advertiserModel){
-        //todo validate advertiser if the updates are null then default back to the original values
-       advertiserMapper.update(advertiserModel);
+    public HttpEntity<AdvertiserModel> updateAdvertiser(@RequestBody AdvertiserModel advertiserModel){
+       return advertiserService.putAdvertiserIfExists(advertiserModel);
     }
 
 }
