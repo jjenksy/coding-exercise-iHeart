@@ -132,4 +132,30 @@ public class AdvertiserService {
 
         return advertiserModel;
     }
+
+    /**
+     * @deductCredit deducts an amount of credit for an advertiser if amount is less then the credit
+     * then it deducts nothing and returns an error message to the user
+     * @param id the id of the user to deduct credit from
+     * @param amount the amount of credit to deduct
+     * @return the empty object with error message or the object with credit deducted
+     */
+    public HttpEntity<AdvertiserModel> deductCredit(Integer id, Integer amount) {
+        AdvertiserModel advertiserToDeduct = advertiserMapper.findByID(id);
+        if(advertiserToDeduct == null){
+            return new ResponseEntity<AdvertiserModel>(new AdvertiserModel("Advertiser with id of "+ id+ " does not exist."),HttpStatus.NOT_FOUND);
+        }
+        int remaining = advertiserToDeduct.getCreditLimit() - amount;
+
+        if(remaining < 0){
+            return new ResponseEntity<AdvertiserModel>(new AdvertiserModel("Amount to deduct is more credit then the advertiser has "
+                    + advertiserToDeduct.getCreditLimit() +
+                    " amount to deduct " +amount +" = " + remaining),
+                    HttpStatus.FORBIDDEN);
+        }
+
+        advertiserToDeduct.setCreditLimit(remaining);
+        advertiserMapper.update(advertiserToDeduct);
+        return new ResponseEntity<AdvertiserModel>(advertiserToDeduct, HttpStatus.OK);
+    }
 }

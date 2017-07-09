@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 public class AdvertiserModelTest {
 
+
     private AdvertiserModel advertiserModel;
     @Before
     public void init(){
@@ -23,29 +24,58 @@ public class AdvertiserModelTest {
     @Test
     public void setGetName() throws Exception {
         String name = "John";
-//        advertiserModel.setName(name);
-//        assertEquals(name, advertiserModel.getName());
+       advertiserModel.setName(name);
+        assertEquals(name, advertiserModel.getName());
     }
 
     @Test
     public void setGetContactName() throws Exception {
         String name = "John";
-//        advertiserModel.setContactName(name);
-//        assertEquals(name, advertiserModel.getContactName());
+       advertiserModel.setContactName(name);
+       assertEquals(name, advertiserModel.getContactName());
     }
 
 
     @Test
     public void setGetCreditLimit() throws Exception {
         Integer creditLimit = 900;
-//        advertiserModel.setCreditLimit(creditLimit);
-//        assertEquals(creditLimit,advertiserModel.getCreditLimit());
+       advertiserModel.setCreditLimit(creditLimit);
+       assertEquals(creditLimit,advertiserModel.getCreditLimit());
     }
 
     @Test
     public void getSetId() throws Exception {
+        advertiserModel.setId(1);
+        assertEquals(advertiserModel.getId(),1,0.0);
     }
 
+    @Test
+    public void getSetErrorMessage() throws Exception {
+        advertiserModel.setErrorMessage("Hello");
+        assertEquals(advertiserModel.getErrorMessage(),"Hello");
+    }
+
+
+
+    @Test
+    public void equals() throws Exception {
+        assertTrue(advertiserModel.equals(new AdvertiserModel()));
+    }
+
+    @Test
+    public void testhashCode() throws Exception {
+        assertNotNull(advertiserModel.toString());
+    }
+
+    @Test
+    public void canEqual() throws Exception {
+        assertTrue(advertiserModel.canEqual(new AdvertiserModel()));
+    }
+
+    @Test
+    public void testToString() throws Exception {
+        assertNotNull(advertiserModel.toString());
+    }
 
 
 }

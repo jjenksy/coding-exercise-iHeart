@@ -1,10 +1,12 @@
---
---    import.sql is used to drop any existing tables and create new tables in database
--- so we can have our mapper interface with the table
---
+/*
+* Engine: H2
+* Version: 0.0.1
+* Description: Initial DB structure
+ */
 
-drop table if exists advertiser;
 
-create table advertiser (id int primary key auto_increment, name varchar, contactName varchar,  creditLimit int);
-
--- insert into advertiser (name, contactName, creditLimit) values ('John', 'Foo bar', 800);
+CREATE TABLE ADVERTISER (
+  id int primary key auto_increment,
+  name varchar not null,
+  contactName varchar not null,
+  creditLimit int not null);

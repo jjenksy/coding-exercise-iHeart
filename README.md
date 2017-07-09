@@ -39,13 +39,22 @@ End with an example of getting some data out of the system or using it for a lit
 ## Actuator
 Access the actuator through postman or curl at:
 ```
-localhost:8080/mappings
+localhost:8090/mappings
 ```
 To view the metrics navigate to:
 
 ```
-http://localhost:8080/metrics
+localhost:8090/metrics
 ```
+To view the info.
+```
+localhost:8090/info
+```
+
+##Lomok
+This project used Lombok annotations to generate the setters and
+getters and override methods for the models. Your editor may require 
+a plugin to support the annotation processing.
 ## Running the tests
 Tests are ran by executing the command:
 ```
@@ -55,6 +64,9 @@ A jacoco test coverage report by running the command:
 ```
 gradle jacocoTestReport
 ```
+
+To view the report navigate to report/jacoco/test/html/index.html
+
 ## Testing the API endpoints
 The endpoints are easily viewed and tested using [Swagger-UI](https://maven.apache.org/) to run the UI use the command
 ```
@@ -63,13 +75,11 @@ gradle bootRun
 and navigate to http://localhost:8080/swagger-ui.html each of the endpoints are exposed through the UI and data can be 
 passed to the controller here.
 
+## Flyway
+Flyway instructions
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Gradle](https://maven.apache.org/) - Dependency Management
 
 ## Authors
 

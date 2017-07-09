@@ -92,4 +92,13 @@ public class AdvertiserController{
        return advertiserService.putAdvertiserIfExists(advertiserModel);
     }
 
+    /**
+     *@deductCredit is the endpoint for removing credit from and advertiser
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/deductCredit/{id}/{amount}")
+    public HttpEntity<AdvertiserModel> deductCredit(@PathVariable("id") Integer id, @PathVariable("amount")Integer amount){
+        return advertiserService.deductCredit(id,amount);
+    }
+
+
 }
