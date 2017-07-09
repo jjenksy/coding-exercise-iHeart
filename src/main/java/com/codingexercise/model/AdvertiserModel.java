@@ -17,10 +17,15 @@ public class AdvertiserModel implements Serializable {
     private Integer id;
     private String name;
     private String contactName;
-    private int creditLimit;
+    private Integer creditLimit = null;
+    private String errorMessage = "OK";//default to ok
 
 
     public AdvertiserModel() {
+    }
+
+    public AdvertiserModel(String message) {
+        this.errorMessage = message;
     }
 
     public AdvertiserModel(String name, String contactName, int creditLimit) {
@@ -45,11 +50,11 @@ public class AdvertiserModel implements Serializable {
         this.contactName = contactName;
     }
 
-    public int getCreditLimit() {
+    public Integer getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(int creditLimit) {
+    public void setCreditLimit(Integer creditLimit) {
         this.creditLimit = creditLimit;
     }
 
@@ -61,4 +66,12 @@ public class AdvertiserModel implements Serializable {
         this.id = id;
     }
 
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

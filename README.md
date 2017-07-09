@@ -35,24 +35,15 @@ until finished
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+Tests are ran by executing the command:
 ```
-Give an example
+gradle test
+```
+A jacoco test coverage report by running the command:
+```
+gradle jacocoTestReport
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 

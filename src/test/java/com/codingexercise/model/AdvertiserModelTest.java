@@ -37,7 +37,7 @@ public class AdvertiserModelTest {
 
     @Test
     public void setGetCreditLimit() throws Exception {
-        int creditLimit = 900;
+        Integer creditLimit = 900;
         advertiserModel.setCreditLimit(creditLimit);
         assertEquals(creditLimit,advertiserModel.getCreditLimit());
     }

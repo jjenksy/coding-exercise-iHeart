@@ -1,5 +1,7 @@
 package com.codingexercise.advertiser;
 
+
+
 import com.codingexercise.mapper.AdvertiserMapper;
 import com.codingexercise.model.AdvertiserModel;
 import org.springframework.http.HttpEntity;
@@ -17,15 +19,15 @@ import java.util.List;
 @RequestMapping(value = "/api/advertiser")
 public class AdvertiserController{
 
-    private CreditChecker creditChecker;
+    private AdvertiserService advertiserService;
     private AdvertiserMapper advertiserMapper;
 
     /**
      * Constructor for the advertiser to autowire the dependencies
      * since spring 4.3 you no longer need to autowire the controller
      */
-    public AdvertiserController(CreditChecker creditChecker, AdvertiserMapper advertiserMapper) {
-        this.creditChecker = creditChecker;
+    public AdvertiserController(AdvertiserService advertiserService, AdvertiserMapper advertiserMapper) {
+        this.advertiserService = advertiserService;
         this.advertiserMapper = advertiserMapper;
     }
 
@@ -34,8 +36,8 @@ public class AdvertiserController{
      * @param advertiserModel the json model of the advertiser
      */
     @RequestMapping(method = RequestMethod.POST, value = "/newAdvertiser")
-    public void addAd(@RequestBody AdvertiserModel advertiserModel){
-       advertiserMapper.insertAdvertiser(advertiserModel);
+    public HttpEntity<AdvertiserModel> addAd(@RequestBody AdvertiserModel advertiserModel){
+       return advertiserService.checkAdvertiser(advertiserModel);
     }
 
     /**
@@ -46,7 +48,7 @@ public class AdvertiserController{
      */
     @RequestMapping(method = RequestMethod.GET, value = "/getAdvertiser/{id}")
     public HttpEntity<AdvertiserModel> getAd(@PathVariable("id")  Integer id){
-        return new ResponseEntity<AdvertiserModel>(advertiserMapper.findByID(id), HttpStatus.OK);
+        return advertiserService.getAdvertiserIfExists(id);
     }
 
     /**
@@ -66,8 +68,8 @@ public class AdvertiserController{
      */
     @RequestMapping(method = RequestMethod.GET,value = "/checkScore/{id}/{amount}")
     public HttpEntity<Boolean> getCredit(@PathVariable("id") Integer id, @PathVariable("amount") int credit){
-        //check wheter the supplied amount is less then credit limit
-        return new ResponseEntity<>(creditChecker.creditChecker(advertiserMapper.findByID(id).getCreditLimit(), credit), HttpStatus.OK);
+        //check wheter the supplied amount is less then credit limit todo check to see if advertiser exists first
+        return new ResponseEntity<>(advertiserService.creditChecker(advertiserMapper.findByID(id).getCreditLimit(), credit), HttpStatus.OK);
     }
 
     /**

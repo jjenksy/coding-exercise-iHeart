@@ -30,7 +30,7 @@ public class AdvertiserControllerTest {
     private AdvertiserMapper advertiserMapper;
 
     @Mock
-    private CreditChecker creditChecker;
+    private AdvertiserService advertiserService;
 
     @Before
     public void init(){
