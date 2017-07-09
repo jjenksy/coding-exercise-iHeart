@@ -31,7 +31,7 @@ public class AdvertiserService {
         if(checker){
             //all data exists so insert into db
             advertiserMapper.insertAdvertiser(advertiserModel);
-            return new ResponseEntity<AdvertiserModel>(advertiserModel, HttpStatus.OK);
+            return new ResponseEntity<AdvertiserModel>(advertiserModel, HttpStatus.CREATED);
         }else{
             //return an empty model with error for client
             return new ResponseEntity<>(new AdvertiserModel("Advertiser missing information. Insure name, contact name and credit limit are not missing."), HttpStatus.BAD_REQUEST);

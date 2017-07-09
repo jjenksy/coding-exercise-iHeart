@@ -28,13 +28,10 @@ Build
 gradle clean build
 ```
 Excecute
-Build
 
 ```
 java -jar build/libs/coding-exercise-iHeart-0.0.1-SNAPSHOT.jar
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Actuator
 Access the actuator through postman or curl at:
@@ -68,18 +65,13 @@ gradle jacocoTestReport
 To view the report navigate to report/jacoco/test/html/index.html
 
 ## Testing the API endpoints
-The endpoints are easily viewed and tested using [Swagger-UI](https://maven.apache.org/) to run the UI use the command
+The endpoints are easily viewed and tested using Swagger-UI to run the UI use the command
 ```
 gradle bootRun
 ```
 and navigate to http://localhost:8080/swagger-ui.html each of the endpoints are exposed through the UI and data can be 
 passed to the controller here.
 
-## Flyway
-Flyway instructions
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Authors
 

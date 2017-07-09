@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * Created by jenksy on 7/8/17.
- */
-@RunWith(SpringRunner.class)
+ */@RunWith(SpringRunner.class)
 public class AdvertiserControllerTest {
 
     @InjectMocks

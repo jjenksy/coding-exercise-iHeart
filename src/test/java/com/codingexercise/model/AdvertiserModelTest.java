@@ -64,7 +64,7 @@ public class AdvertiserModelTest {
 
     @Test
     public void testhashCode() throws Exception {
-        assertNotNull(advertiserModel.toString());
+        assertNotNull(advertiserModel.hashCode());
     }
 
     @Test
