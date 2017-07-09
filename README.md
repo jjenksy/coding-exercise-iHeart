@@ -19,13 +19,19 @@ This is project uses the Gradle build tool assume gradle intalled.
 Clone or Fork this repo and open the project
 
 ```
-Give the example
+git clone https://github.com/jjenksy/coding-exercise-iHeart.git
 ```
 
-And repeat
+Build
 
 ```
-until finished
+gradle clean build
+```
+Excecute
+Build
+
+```
+java -jar build/libs/coding-exercise-iHeart-0.0.1-SNAPSHOT.jar
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
