@@ -57,25 +57,4 @@ public class AdvertiserModelTest {
 
 
 
-    @Test
-    public void equals() throws Exception {
-        assertTrue(advertiserModel.equals(new AdvertiserModel()));
-    }
-
-    @Test
-    public void testhashCode() throws Exception {
-        assertNotNull(advertiserModel.hashCode());
-    }
-
-    @Test
-    public void canEqual() throws Exception {
-        assertTrue(advertiserModel.canEqual(new AdvertiserModel()));
-    }
-
-    @Test
-    public void testToString() throws Exception {
-        assertNotNull(advertiserModel.toString());
-    }
-
-
 }

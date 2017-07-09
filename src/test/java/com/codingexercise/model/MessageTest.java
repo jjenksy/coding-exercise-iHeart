@@ -25,24 +25,5 @@ public class MessageTest {
 
 
 
-    @Test
-    public void equals() throws Exception {
-        assertTrue(this.message.equals(new Message("Hello")));
-    }
-
-    @Test
-    public void testHashCode() throws Exception {
-        assertNotNull(this.message.hashCode());
-    }
-
-    @Test
-    public void testCanEqual() throws Exception {
-       assertTrue(this.message.canEqual(new Message("Hello")));
-    }
-
-    @Test
-    public void testToString() throws Exception {
-        assertNotNull(this.message.toString());
-    }
 
 }

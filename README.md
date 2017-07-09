@@ -47,11 +47,6 @@ To view the info.
 ```
 localhost:8090/info
 ```
-
-##Lomok
-This project used Lombok annotations to generate the setters and
-getters and override methods for the models. Your editor may require 
-a plugin to support the annotation processing.
 ## Running the tests
 Tests are ran by executing the command:
 ```
