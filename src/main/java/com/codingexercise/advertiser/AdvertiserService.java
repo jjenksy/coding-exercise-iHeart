@@ -2,6 +2,7 @@ package com.codingexercise.advertiser;
 
 import com.codingexercise.mapper.AdvertiserMapper;
 import com.codingexercise.model.AdvertiserModel;
+import com.codingexercise.model.Message;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

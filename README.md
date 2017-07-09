@@ -36,6 +36,16 @@ java -jar build/libs/coding-exercise-iHeart-0.0.1-SNAPSHOT.jar
 
 End with an example of getting some data out of the system or using it for a little demo
 
+## Actuator
+Access the actuator through postman or curl at:
+```
+localhost:8080/mappings
+```
+To view the metrics navigate to:
+
+```
+http://localhost:8080/metrics
+```
 ## Running the tests
 Tests are ran by executing the command:
 ```
