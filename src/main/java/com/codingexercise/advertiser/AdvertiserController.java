@@ -69,7 +69,7 @@ public class AdvertiserController{
      */
     @RequestMapping(method = RequestMethod.GET,value = "/checkScore/{id}/{amount}")
     public HttpEntity<Boolean> getCredit(@PathVariable("id") Integer id, @PathVariable("amount") int credit){
-        //check wheter the supplied amount is less then credit limit todo check to see if advertiser exists first
+        //check wheter the supplied amount is less then credit limit
         return new ResponseEntity<>(advertiserService.creditChecker(advertiserMapper.findByID(id).getCreditLimit(), credit), HttpStatus.OK);
     }
 
