@@ -57,7 +57,7 @@ A jacoco test coverage report by running the command:
 gradle jacocoTestReport
 ```
 
-To view the report navigate to report/jacoco/test/html/index.html
+To view the report navigate to build/report/jacoco/test/html/index.html
 
 ## Testing the API endpoints
 The endpoints are easily viewed and tested using Swagger-UI to run the UI use the command
